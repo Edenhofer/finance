@@ -1,0 +1,7 @@
+# Backup files
+*~
+*.bak
+log/
+
+# Ignore temporary python related files and folders
+__pycache__/
