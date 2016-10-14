@@ -49,6 +49,22 @@ def day_performance(html):
 	else:
 		return "ER:NONE"
 
+def book_value(html):
+	if len(html) <= 100:
+		return "ER:404"
+
+	# Find the first occurance of a specified pattern
+	pattern = re.compile(b'Buchwert/Aktie<[^>]+><[^>]+>[0-9.,]+')
+	hits = pattern.findall(html)
+
+	if len(hits) >= 1:
+		# Retrieve the actual value from the hits: first number after '>', strip '>' afterwards
+		pattern = re.compile('[0-9.,+-]+')
+		result = pattern.findall(hits[0].decode("utf-8"))[0]
+		return result
+	else:
+		return "ER:NONE"
+
 def predicted_target(html):
 	if len(html) <= 100:
 		return "ER:404"

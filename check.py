@@ -52,20 +52,22 @@ def color_sign(string_with_sign):
 
 def print_stock_table_row(stock):
 	html = finanzen_net.fetch(stock)
-	print("{:25}\t{:6}\t{:20}\t{:6} ({})".format(stock, \
+	print("{:25}\t{:6}\t{:20}\t{:6} ({:6})\t\t\t{:6}".format(stock, \
 		finanzen_net.price(html),                       \
 		color_sign(finanzen_net.day_performance(html)), \
 		finanzen_net.predicted_target(html),            \
-		color_sign(finanzen_net.predicted_performance(html))))
+		color_sign(finanzen_net.predicted_performance(html)), \
+		finanzen_net.book_value(html) ))
 
-print(bcolors.BOLD + "TECDAX:\n{:25}\t{:6}\t{:8}\t{:6} ({}) in EUR".format("Aktie", "Kurs", "Day Perf. (%)", "Kursziel", "Target (%)") + bcolors.ENDC)
+
+print(bcolors.BOLD + "TECDAX:\n{:25}\t{:6}\t{:8}\t{:6} ({:6}) in EUR\t{:6}".format("Aktie", "Kurs", "Day Perf. (%)", "Kursziel", "in %", "Buch/Aktie") + bcolors.ENDC)
 for stock in TECDAX:
 	print_stock_table_row(stock)
 
-print(bcolors.BOLD + "\nMDAX\n{:25}\t{:6}\t{:8}\t{:6} ({}) in EUR".format("Aktie", "Kurs", "Day Perf.", "Kursziel", "in %") + bcolors.ENDC)
+print(bcolors.BOLD + "\nMDAX\n{:25}\t{:6}\t{:8}\t{:6} ({:6}) in EUR\t{:6}".format("Aktie", "Kurs", "Day Perf.", "Kursziel", "in %", "Buch/Aktie") + bcolors.ENDC)
 for stock in MDAX:
 	print_stock_table_row(stock)
 
-print(bcolors.BOLD + "\nDAX\n{:25}\t{:6}\t{:8}\t{:6} ({}) in EUR".format("Aktie", "Kurs", "Day Perf.", "Kursziel", "in %") + bcolors.ENDC)
+print(bcolors.BOLD + "\nDAX\n{:25}\t{:6}\t{:8}\t{:6} ({:6}) in EUR\t{:6}".format("Aktie", "Kurs", "Day Perf.", "Kursziel", "in %", "Buch/Aktie") + bcolors.ENDC)
 for stock in DAX:
 	print_stock_table_row(stock)
